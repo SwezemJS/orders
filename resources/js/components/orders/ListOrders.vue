@@ -67,13 +67,13 @@ export default {
     methods: {
         getOrders: function () {
             axios
-                .get('http://127.0.0.1:8000/api/orders/list')
+                .get(this.$hostname + '/api/orders/list')
                 .then(response => {
                     this.orders = response.data
                 });
         },
         deleteOrder: function (index) {
-            axios.get('http://127.0.0.1:8000/api/orders/delete/' + this.orders[index].id);
+            axios.get(this.$hostname + '/api/orders/delete/' + this.orders[index].id);
             this.orders.splice(index, 1);
         },
     },

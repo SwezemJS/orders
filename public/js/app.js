@@ -2272,7 +2272,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // получаем пользователя
-      axios.get('http://127.0.0.1:8000/api/users/list').then(function (response) {
+      axios.get(this.$hostname + '/api/users/list').then(function (response) {
         _this.users = response.data;
       });
     },
@@ -2280,7 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       // получаем список продуктов
-      axios.get('http://127.0.0.1:8000/api/products/list').then(function (response) {
+      axios.get(this.$hostname + '/api/products/list').then(function (response) {
         _this2.products = response.data;
       });
     },
@@ -2291,7 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.newOrder.products.length > 0 && Object.keys(this.newOrder).length >= 6) {
         var type = 'create';
         if (this.$route.params.id) type = 'update';
-        axios.post('http://127.0.0.1:8000/api/orders/' + type, this.newOrder).then(function (response) {
+        axios.post(this.$hostname + '/api/orders/' + type, this.newOrder).then(function (response) {
           if (response.data.type == 'error') {
             _this3.$notify({
               type: 'error',
@@ -2381,7 +2381,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       // получаем заказ для редактирования
-      axios.get('http://127.0.0.1:8000/api/orders/get/' + id).then(function (response) {
+      axios.get(this.$hostname + '/api/orders/get/' + id).then(function (response) {
         if (response.data.type !== 'error') {
           _this4.newOrder = response.data;
 
@@ -2514,12 +2514,12 @@ __webpack_require__.r(__webpack_exports__);
     getOrders: function getOrders() {
       var _this = this;
 
-      axios.get('http://127.0.0.1:8000/api/orders/list').then(function (response) {
+      axios.get(this.$hostname + '/api/orders/list').then(function (response) {
         _this.orders = response.data;
       });
     },
     deleteOrder: function deleteOrder(index) {
-      axios.get('http://127.0.0.1:8000/api/orders/delete/' + this.orders[index].id);
+      axios.get(this.$hostname + '/api/orders/delete/' + this.orders[index].id);
       this.orders.splice(index, 1);
     }
   },
@@ -2568,7 +2568,7 @@ __webpack_require__.r(__webpack_exports__);
     getReport: function getReport() {
       var _this = this;
 
-      axios.post('http://127.0.0.1:8000/api/orders/report', {
+      axios.post(this.$hostname + '/api/orders/report', {
         'date': this.date
       }).then(function (responce) {
         _this.report = responce.data; // получаем отчет
@@ -2600,6 +2600,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].use((vue_notification__WEBPACK_IMPORTED_MODULE_0___default()));
 
 
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.$hostname = 'http://127.0.0.1:8000';
 new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
   router: _router_js__WEBPACK_IMPORTED_MODULE_2__["default"],
   render: function render(x) {

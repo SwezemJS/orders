@@ -9,6 +9,8 @@ Vue.use(Notifications)
 import router from "./router.js";
 import App from './components/App'
 
+Vue.prototype.$hostname = 'http://127.0.0.1:8000';
+
 new Vue({
     router: router,
     render: (x) => x(App)

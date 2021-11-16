@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         getReport: function () {
-            axios.post('http://127.0.0.1:8000/api/orders/report',{'date': this.date }).then(responce => {
+            axios.post(this.$hostname + '/api/orders/report',{'date': this.date }).then(responce => {
                 this.report = responce.data; // получаем отчет
             });
         }

@@ -170,14 +170,14 @@ export default {
     methods: {
         getUsers: function () { // получаем пользователя
             axios
-                .get('http://127.0.0.1:8000/api/users/list')
+                .get(this.$hostname + '/api/users/list')
                 .then(response => {
                     this.users = response.data
                 });
         },
         getProducts: function () {  // получаем список продуктов
             axios
-                .get('http://127.0.0.1:8000/api/products/list')
+                .get(this.$hostname + '/api/products/list')
                 .then(response => {
                     this.products = response.data
                 });
@@ -186,7 +186,7 @@ export default {
             if (this.newOrder.products.length > 0 && Object.keys(this.newOrder).length >= 6) {
                 let type = 'create';
                 if (this.$route.params.id) type = 'update'
-                axios.post('http://127.0.0.1:8000/api/orders/'+type, this.newOrder)
+                axios.post(this.$hostname + '/api/orders/'+type, this.newOrder)
                     .then(response => {
                         if (response.data.type == 'error') {
                             this.$notify({
@@ -262,7 +262,7 @@ export default {
         // edit
         getOrder: function (id) { // получаем заказ для редактирования
             axios
-                .get('http://127.0.0.1:8000/api/orders/get/' + id)
+                .get(this.$hostname + '/api/orders/get/' + id)
                 .then(response => {
 
                     if (response.data.type !== 'error') {
