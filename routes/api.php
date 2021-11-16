@@ -16,7 +16,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::prefix('orders')->group(function (){
+Route::prefix('orders')->middleware('cors')->group(function (){
     Route::get('/list',[OrderController::class,'list']);
     Route::get('/get/{id}',[OrderController::class,'get'])->where('id', '[0-9]+');
     Route::get('/delete/{id}',[OrderController::class,'delete'])->where('id', '[0-9]+');
